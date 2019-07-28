@@ -10,7 +10,7 @@ namespace JogoXadrez
         {
             for (int i = 0; i < tabuleiro.Linhas; i++)
             {
-                Console.Write($"{8 - i} ");
+                ImprimirPosicaoXadrez($"{8 - i} ", false);
 
                 for (int j = 0; j < tabuleiro.Colunas; j++)
                 {
@@ -23,14 +23,25 @@ namespace JogoXadrez
                         ImprimirPeca(tabuleiro.GetPeca(i, j));
                         Console.Write(" ");
                     }
-                    
                 }
+
                 Console.WriteLine();
             }
-            Console.WriteLine("  a b c d e f g h ");
+
+            ImprimirPosicaoXadrez("  a b c d e f g h ", true);
         }
 
-        public static void ImprimirPeca(Peca peca)
+        public static Posicao LerPosicao()
+        {
+            string s = Console.ReadLine();
+
+            char coluna = s[0];
+            int linha = int.Parse(s[1].ToString());
+
+            return new PosicaoXadrez(coluna, linha).ToPosicao();
+        }
+
+        private static void ImprimirPeca(Peca peca)
         {
             if (peca.Cor == Cor.Preta)
             {
@@ -43,6 +54,19 @@ namespace JogoXadrez
             {
                 Console.Write(peca);
             }
+        }
+
+        private static void ImprimirPosicaoXadrez(string s, bool writeLine)
+        {
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            if (writeLine)
+                Console.WriteLine(s);
+            else
+                Console.Write(s);
+
+            Console.ForegroundColor = aux;
         }
     }
 }

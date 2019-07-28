@@ -30,7 +30,7 @@ namespace JogoXadrez.Entidades
             return Pecas[pos.Linha, pos.Coluna];
         }
 
-        public void AddPeca(Peca peca, Posicao pos)
+        public void ColocarPeca(Peca peca, Posicao pos)
         {
             if (ExistePeca(pos))
             {
@@ -39,6 +39,20 @@ namespace JogoXadrez.Entidades
 
             Pecas[pos.Linha, pos.Coluna] = peca;
             peca.Posicao = pos;
+        }
+
+        public Peca RetirarPeca(Posicao pos)
+        {
+            Peca pecaRemovida = null;
+
+            if (ExistePeca(pos))
+            {
+                pecaRemovida = Pecas[pos.Linha, pos.Coluna];
+                pecaRemovida.Posicao = null;
+                Pecas[pos.Linha, pos.Coluna] = null;
+            }
+
+            return pecaRemovida;
         }
 
         public bool IsPosicaoInvalida(Posicao pos)

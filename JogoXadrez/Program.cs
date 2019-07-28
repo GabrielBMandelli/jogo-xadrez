@@ -1,6 +1,5 @@
 ﻿using System;
 using JogoXadrez.Entidades;
-using JogoXadrez.Enums;
 using JogoXadrez.Exceptions;
 
 namespace JogoXadrez
@@ -11,13 +10,21 @@ namespace JogoXadrez
         {
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
+                Partida partida = new Partida();
 
-                tab.AddPeca(new Torre(Cor.Preta, tab), new Posicao(0, 0));
-                tab.AddPeca(new Rei(Cor.Preta, tab), new Posicao(0, 3));
-                tab.AddPeca(new Torre(Cor.Preta, tab), new Posicao(0, 7));
+                while (!partida.Terminada)
+                {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.Tabuleiro);
+                    Console.WriteLine();
 
-                Tela.ImprimirTabuleiro(tab);
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.LerPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicao();
+
+                    partida.MoverPeca(origem, destino);
+                }
             }
             catch (TabuleiroException e)
             {

@@ -16,5 +16,10 @@ namespace JogoXadrez.Entidades
             QtdMovimentos = 0;
             Posicao = null;
         }
+
+        public void IncrementarMovimento()
+        {
+            QtdMovimentos++;
+        }
     }
 }
