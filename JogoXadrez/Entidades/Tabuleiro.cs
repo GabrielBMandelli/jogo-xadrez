@@ -1,4 +1,6 @@
-﻿namespace JogoXadrez.Entidades
+﻿using JogoXadrez.Exceptions;
+
+namespace JogoXadrez.Entidades
 {
     class Tabuleiro
     {
@@ -15,13 +17,43 @@
 
         public Peca GetPeca(int linha, int coluna)
         {
-            return Pecas[linha, coluna];
+            return GetPeca(new Posicao(linha, coluna));
+        }
+
+        public Peca GetPeca(Posicao pos)
+        {
+            if (IsPosicaoInvalida(pos))
+            {
+                throw new TabuleiroException("Posição inválida!");
+            }
+
+            return Pecas[pos.Linha, pos.Coluna];
         }
 
         public void AddPeca(Peca peca, Posicao pos)
         {
+            if (ExistePeca(pos))
+            {
+                throw new TabuleiroException("Já existe uma peça nessa posição!");
+            }
+
             Pecas[pos.Linha, pos.Coluna] = peca;
             peca.Posicao = pos;
+        }
+
+        public bool IsPosicaoInvalida(Posicao pos)
+        {
+            return pos.Linha < 0 || pos.Linha >= Linhas || pos.Coluna < 0 || pos.Coluna >= Colunas;
+        }
+
+        public bool ExistePeca(Posicao pos)
+        {
+            if (IsPosicaoInvalida(pos))
+            {
+                throw new TabuleiroException("Posição inválida!");
+            }
+
+            return GetPeca(pos) != null;
         }
     }
 }
