@@ -1,10 +1,11 @@
 ﻿using System;
+using JogoXadrez.Entidades;
 
 namespace JogoXadrez
 {
     class Tela
     {
-        public static void ImprimirTabuleiro(Tabuleiro.Entidades.Tabuleiro tabuleiro)
+        public static void ImprimirTabuleiro(Tabuleiro tabuleiro)
         {
             for (int i = 0; i < tabuleiro.Linhas; i++)
             {

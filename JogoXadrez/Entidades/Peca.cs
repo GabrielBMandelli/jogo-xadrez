@@ -1,6 +1,6 @@
-﻿using JogoXadrez.Tabuleiro.Enums;
+﻿using JogoXadrez.Enums;
 
-namespace JogoXadrez.Tabuleiro.Entidades
+namespace JogoXadrez.Entidades
 {
     class Peca
     {
@@ -9,14 +9,12 @@ namespace JogoXadrez.Tabuleiro.Entidades
         public int QtdMovimentos { get; protected set; }
         public Tabuleiro Tabuleiro { get; protected set; }
 
-        public Peca() { }
-
-        public Peca(Posicao posicao, Cor cor, Tabuleiro tabuleiro)
+        public Peca(Cor cor, Tabuleiro tabuleiro)
         {
-            Posicao = posicao;
             Cor = cor;
             Tabuleiro = tabuleiro;
             QtdMovimentos = 0;
+            Posicao = null;
         }
     }
 }

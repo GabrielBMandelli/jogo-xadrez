@@ -1,4 +1,4 @@
-﻿namespace JogoXadrez.Tabuleiro.Entidades
+﻿namespace JogoXadrez.Entidades
 {
     class Tabuleiro
     {
@@ -16,6 +16,12 @@
         public Peca GetPeca(int linha, int coluna)
         {
             return Pecas[linha, coluna];
+        }
+
+        public void AddPeca(Peca peca, Posicao pos)
+        {
+            Pecas[pos.Linha, pos.Coluna] = peca;
+            peca.Posicao = pos;
         }
     }
 }

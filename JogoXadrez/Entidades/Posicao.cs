@@ -1,4 +1,4 @@
-﻿namespace JogoXadrez.Tabuleiro.Entidades
+﻿namespace JogoXadrez.Entidades
 {
     class Posicao
     {
