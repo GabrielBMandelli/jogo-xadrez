@@ -6,7 +6,7 @@ namespace JogoXadrez
 {
     class Tela
     {
-        public static void ImprimirTabuleiro(Tabuleiro tabuleiro)
+        public static void ImprimirTabuleiro(Tabuleiro tabuleiro, bool[,] m = null)
         {
             for (int i = 0; i < tabuleiro.Linhas; i++)
             {
@@ -14,15 +14,8 @@ namespace JogoXadrez
 
                 for (int j = 0; j < tabuleiro.Colunas; j++)
                 {
-                    if (tabuleiro.GetPeca(i, j) == null)
-                    {
-                        Console.Write("- ");
-                    }
-                    else
-                    {
-                        ImprimirPeca(tabuleiro.GetPeca(i, j));
-                        Console.Write(" ");
-                    }
+                    ConsoleColor corDeFundo = (m != null && m[i, j]) ? ConsoleColor.DarkGray : ConsoleColor.Black;
+                    ImprimirPeca(tabuleiro.GetPeca(i, j), corDeFundo);
                 }
 
                 Console.WriteLine();
@@ -41,19 +34,19 @@ namespace JogoXadrez
             return new PosicaoXadrez(coluna, linha).ToPosicao();
         }
 
-        private static void ImprimirPeca(Peca peca)
+        private static void ImprimirPeca(Peca peca, ConsoleColor fundo)
         {
-            if (peca.Cor == Cor.Preta)
-            {
-                ConsoleColor aux = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(peca);
-                Console.ForegroundColor = aux;
-            }
-            else
-            {
-                Console.Write(peca);
-            }
+            Console.BackgroundColor = fundo;
+
+            string s = (peca == null) ? "- " : $"{peca} ";
+
+            ConsoleColor aux = Console.ForegroundColor;
+
+            if (peca != null)
+                Console.ForegroundColor = (peca.Cor == Cor.Preta) ? ConsoleColor.Yellow : aux;
+
+            Console.Write(s);
+            Console.ForegroundColor = aux;
         }
 
         private static void ImprimirPosicaoXadrez(string s, bool writeLine)

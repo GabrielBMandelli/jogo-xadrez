@@ -2,7 +2,7 @@
 
 namespace JogoXadrez.Entidades
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao Posicao { get; set; }
         public Cor Cor { get; protected set; }
@@ -21,5 +21,13 @@ namespace JogoXadrez.Entidades
         {
             QtdMovimentos++;
         }
+
+        protected bool IsMovimentoPossivel(Posicao pos)
+        {
+            Peca p = Tabuleiro.GetPeca(pos);
+            return p == null || p.Cor != Cor;
+        }
+
+        public abstract bool[,] GetMovimentosPossiveis();
     }
 }

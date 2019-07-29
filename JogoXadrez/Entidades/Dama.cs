@@ -8,6 +8,11 @@ namespace JogoXadrez.Entidades
         {
         }
 
+        public override bool[,] GetMovimentosPossiveis()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override string ToString()
         {
             return "D";
