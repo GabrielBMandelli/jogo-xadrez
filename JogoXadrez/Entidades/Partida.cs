@@ -1,12 +1,13 @@
 ﻿using JogoXadrez.Enums;
+using JogoXadrez.Exceptions;
 
 namespace JogoXadrez.Entidades
 {
     class Partida
     {
         public Tabuleiro Tabuleiro { get; private set; }
-        private int Turno { get; set; }
-        private Cor JogadorAtual { get; set; }
+        public int Turno { get; private set; }
+        public Cor JogadorAtual { get; private set; }
         public bool Terminada { get; private set; }
 
         public Partida()
@@ -29,6 +30,31 @@ namespace JogoXadrez.Entidades
                 pecaMovimentada.IncrementarMovimento();
                 Tabuleiro.ColocarPeca(pecaMovimentada, destino);
             }
+        }
+
+        public void ValidarOrigem(Posicao origem)
+        {
+            if (!Tabuleiro.ExistePeca(origem))
+            {
+                throw new TabuleiroException("Não existe peça na posição de origem!");
+            }
+
+            if (Tabuleiro.GetPeca(origem).Cor != JogadorAtual)
+            {
+                throw new TabuleiroException("A peça de origem escolhida não é sua!");
+            }
+
+            if (!Tabuleiro.GetPeca(origem).ExisteMovimentoPossivel())
+            {
+                throw new TabuleiroException("Não há movimentos possíveis para a peça de origem escolhida!");
+            }
+        }
+
+        public void RealizarJogada(Posicao origem, Posicao destino)
+        {
+            MoverPeca(origem, destino);
+            Turno++;
+            JogadorAtual = (JogadorAtual == Cor.Branca) ? Cor.Preta : Cor.Branca;
         }
 
         public void IniciarPecas()

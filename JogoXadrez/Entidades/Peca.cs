@@ -28,6 +28,22 @@ namespace JogoXadrez.Entidades
             return p == null || p.Cor != Cor;
         }
 
+        public bool ExisteMovimentoPossivel()
+        {
+            bool[,] m = GetMovimentosPossiveis();
+
+            for (int i = 0; i < Tabuleiro.Linhas; i++)
+            {
+                for (int j = 0; j < Tabuleiro.Colunas; j++)
+                {
+                    if (m[i, j])
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
         public abstract bool[,] GetMovimentosPossiveis();
     }
 }
