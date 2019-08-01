@@ -15,35 +15,43 @@ namespace JogoXadrez.Entidades
 
             // NORTE
             pos.SetPosicao(Posicao.Linha - 1, Posicao.Coluna);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // NORDESTE
             pos.SetPosicao(Posicao.Linha - 1, Posicao.Coluna + 1);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // LESTE
             pos.SetPosicao(Posicao.Linha, Posicao.Coluna + 1);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // SUDESTE
             pos.SetPosicao(Posicao.Linha + 1, Posicao.Coluna + 1);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // SUL
             pos.SetPosicao(Posicao.Linha + 1, Posicao.Coluna);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // SUDOESTE
             pos.SetPosicao(Posicao.Linha + 1, Posicao.Coluna - 1);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // OESTE
             pos.SetPosicao(Posicao.Linha, Posicao.Coluna - 1);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             // NOROESTE
             pos.SetPosicao(Posicao.Linha - 1, Posicao.Coluna - 1);
-            m[pos.Linha, pos.Coluna] = (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos)) ? true : false;
+            if (!Tabuleiro.IsPosicaoInvalida(pos) && IsMovimentoPossivel(pos))
+                m[pos.Linha, pos.Coluna] = true;
 
             return m;
         }
