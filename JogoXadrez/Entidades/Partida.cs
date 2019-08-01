@@ -50,6 +50,14 @@ namespace JogoXadrez.Entidades
             }
         }
 
+        public void ValidarDestino(bool[,] m, Posicao destino)
+        {
+            if (!m[destino.Linha, destino.Coluna])
+            {
+                throw new TabuleiroException("Posição de destino inválida!");
+            }
+        }
+
         public void RealizarJogada(Posicao origem, Posicao destino)
         {
             MoverPeca(origem, destino);

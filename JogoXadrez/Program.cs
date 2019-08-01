@@ -19,13 +19,12 @@ namespace JogoXadrez
                     Console.WriteLine();
                     Console.WriteLine("Turno: {0}", partida.Turno);
                     Console.WriteLine("Aguardando jogada: {0}", partida.JogadorAtual);
-
                     Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.LerPosicao();
 
                     try
                     {
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.LerPosicao();
                         partida.ValidarOrigem(origem);
 
                         bool[,] movimentosPossiveis = partida.Tabuleiro.GetPeca(origem).GetMovimentosPossiveis();
@@ -36,6 +35,7 @@ namespace JogoXadrez
 
                         Console.Write("Destino: ");
                         Posicao destino = Tela.LerPosicao();
+                        partida.ValidarDestino(movimentosPossiveis, destino);
 
                         partida.RealizarJogada(origem, destino);
                     }
